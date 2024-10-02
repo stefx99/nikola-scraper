@@ -168,6 +168,8 @@ class SearchEngine(object):
                     break
                 tags = BeautifulSoup(response.html, "html.parser")
                 items = self._filter_results(tags)
+                for item in items:
+                    item['page'] = page
                 self._collect_results(items)
                 
                 msg = 'page: {:<8} links: {}'.format(page, len(self.results))

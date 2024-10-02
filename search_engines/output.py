@@ -28,13 +28,13 @@ def print_results(search_engines):
 def create_csv_data(search_engines):
     '''CSV formats the search results.'''
     encoder = decode_bytes if PYTHON_VERSION == 3 else encode_str
-    data = [['query', 'engine', 'domain', 'URL', 'title', 'text']]
+    data = [['query', 'engine', 'page', 'domain', 'URL', 'title', 'text']]
 
     for engine in search_engines:
         for i in engine.results:
             row = [
                 engine._query, engine.__class__.__name__, 
-                i['host'], i['link'], i['title'], i['text']
+                i['page'], i['host'], i['link'], i['title'], i['text']
             ]
             row = [encoder(i) for i in row]
             data.append(row)
