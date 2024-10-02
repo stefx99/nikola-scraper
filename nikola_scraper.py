@@ -2,6 +2,7 @@
 import argparse
 from random_strings import random_string
 from merge_files import merge_files
+import os
 
 try:
     from search_engines.engines import search_engines_dict
@@ -46,6 +47,10 @@ def main(query=None):
             engine.set_search_operator(args.f)
 
         engine.search(query, args.p)
+
+        if not os.path.exists(config.OUTPUT_DIR + 'processed'):
+            os.mkdir(config.OUTPUT_DIR + 'processed')
+
         engine.output(args.o, config.FILE_NAME + random_string(5))
 
 
